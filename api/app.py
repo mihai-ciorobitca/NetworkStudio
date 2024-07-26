@@ -1,16 +1,20 @@
 from flask import Flask, render_template, redirect, request, abort, send_from_directory
 from supabase import create_client, Client
 from flask_caching import Cache
+from dotenv import load_dotenv
+from os import getenv
+
+load_dotenv()
 
 config = {
     "CACHE_TYPE": "SimpleCache",
     "CACHE_DEFAULT_TIMEOUT": 300
 }
 
-URL_BASE = 'https://qfvhxwctxqrtemtysrrx.supabase.co'
-SECRET_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmdmh4d2N0eHFydGVtdHlzcnJ4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxOTY2MzAzMiwiZXhwIjoyMDM1MjM5MDMyfQ.JZ9YSF8o-Jgmxv0ePW4suSsYyD_KmPIpgxqrPrjQpNA'
+url_base = getenv("URL_BASE")
+secret_key = getenv("SECRET_KEY")
 
-supabase_client: Client = create_client(URL_BASE, SECRET_KEY)
+supabase_client: Client = create_client(url_base, secret_key)
 
 app = Flask(__name__, template_folder='templates')
 

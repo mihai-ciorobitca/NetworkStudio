@@ -1,3 +1,4 @@
 flask
 supabase
 flask_caching
+python-dotenv
